@@ -10,8 +10,8 @@ function Sidebar() {
       <nav className="nav">
         <a className="nav-item" href="#/dashboard">Dashboard</a>
         <a className="nav-item" href="#/projects">Projects</a>
-        <a className="nav-item">Designs</a>
-        <a className="nav-item">Quotations</a>
+        <a className="nav-item" href="#/designs">Designs</a>
+        <a className="nav-item" href="#/quotations">Quotations</a>
         <a className="nav-item">Orders</a>
         <a className="nav-item">Customers</a>
         <a className="nav-item">Measurements</a>

@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import Dashboard from '../features/dashboard/Dashboard'
 import Projects from '../features/projects/Projects'
+import Designs from '../features/designs/Designs'
+import Quotations from '../features/quotations/Quotations'
 
 const routes = {
   '/dashboard': Dashboard,
   '/projects': Projects,
+  '/designs': Designs,
+  '/quotations': Quotations,
 }
 
 function getRouteFromHash() {
