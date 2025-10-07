@@ -1,4 +1,8 @@
 import React from 'react'
+import { FaCalendarDays } from "react-icons/fa6";
+import { LuClipboardPen, LuUserRound } from "react-icons/lu";
+import { FiPenTool } from "react-icons/fi";
+
 
 function KPI({ icon, title, value }) {
   return (
@@ -72,10 +76,10 @@ function Dashboard() {
       <p className="page-sub">Here is an overview of your financial health and recent activity.</p>
 
       <div className="kpi-grid">
-        <KPI icon="🗓" title="Total Appointments" value="132" />
-        <KPI icon="📦" title="Active Orders" value="132" />
-        <KPI icon="📝" title="Pending Designs" value="132" />
-        <KPI icon="🧑‍🤝‍🧑" title="New Customers" value="132" />
+        <KPI icon={<FaCalendarDays/>} title="Upcoming this week" value="132" />
+        <KPI icon={<LuClipboardPen/>} title="Currently active in que" value="132" />
+        <KPI icon={<FiPenTool/>} title="Drafts awaiting review." value="132" />
+        <KPI icon={<LuUserRound/>} title="This month" value="132" />
       </div>
 
       <div className="grid-2">

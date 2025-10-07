@@ -1,6 +1,14 @@
 import React, { useState } from 'react'
 import ProjectSlideOver from './components/ProjectSlideOver'
 import NewProjectModal from './components/NewProjectModal'
+// import { FaCalendarDays } from "react-icons/fa6";
+import { LuFolderCog, LuFolderCheck } from "react-icons/lu";
+// import { FiPenTool } from "react-icons/fi";
+import { HiOutlineFolderArrowDown } from "react-icons/hi2";
+
+
+import { FaRegFolderOpen } from "react-icons/fa";
+
 
 function KPI({ icon, title, value, sub }) {
   return (
@@ -10,8 +18,10 @@ function KPI({ icon, title, value, sub }) {
         <div className="kpi-value">{value}</div>
         <div className="kpi-title">{title}</div>
       </div>
-      <div className="kpi-sub">{sub}</div>
-      <button className="kebab">⋯</button>
+      <div className='kpi-foot'>
+        <div className="kpi-sub">{sub}</div>
+        <button className="kebab">⋯</button>
+      </div>
     </div>
   )
 }
@@ -38,13 +48,13 @@ function Projects() {
       <p className="page-sub">Manage and track all customer projects from quotation to delivery.</p>
 
       <div className="kpi-grid">
-        <KPI icon="🗓" title="Total Projects" value="132" sub="Last month" />
-        <KPI icon="📦" title="Active" value="12" sub="Last month" />
-        <KPI icon="✅" title="Completed" value="114" sub="Last month" />
-        <KPI icon="📁" title="Archived" value="16" sub="Last month" />
+        <KPI icon={<FaRegFolderOpen />} title="Total Projects" value="132" sub="Last month" />
+        <KPI icon={<LuFolderCog />} title="Active" value="12" sub="Last month" />
+        <KPI icon={<LuFolderCheck />} title="Completed" value="114" sub="Last month" />
+        <KPI icon={<HiOutlineFolderArrowDown />} title="Archived" value="16" sub="Last month" />
       </div>
 
-      <section className="card" style={{marginTop:12}}>
+      <section className="card" style={{ marginTop: 12 }}>
         <div className="card-header">
           <div className="card-title">Project Status</div>
         </div>
@@ -59,12 +69,12 @@ function Projects() {
         </div>
       </section>
 
-      <section className="card" style={{marginTop:12}}>
+      <section className="card" style={{ marginTop: 12 }}>
         <div className="card-header">
           <div className="card-title">Projects</div>
           <div className="table-actions">
             <input className="table-search" placeholder="Search here" />
-            <button className="btn" onClick={()=>setNewOpen(true)}>New Project ↗</button>
+            <button className="btn" onClick={() => setNewOpen(true)}>New Project ↗</button>
             <button className="btn">Filter ▾</button>
           </div>
         </div>
@@ -78,22 +88,22 @@ function Projects() {
               <div>Current Stage</div>
               <div>Actions</div>
             </div>
-            {[1,2,3,4,5].map((i)=> (
+            {[1, 2, 3, 4, 5].map((i) => (
               <div className="trow" key={i}>
                 <div>PRJ-2025-021</div>
                 <div>Modern Kitchen Remodel</div>
                 <div>Ali Hassan</div>
                 <div><span className="status success">Completed</span></div>
                 <div>Design</div>
-                <div><button className="link" onClick={()=>setOpen(true)}>View Details ↗</button></div>
+                <div><button className="link" onClick={() => setOpen(true)}>View Details ↗</button></div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <ProjectSlideOver open={open} onClose={()=>setOpen(false)} />
-      <NewProjectModal open={newOpen} onClose={()=>setNewOpen(false)} />
+      <ProjectSlideOver open={open} onClose={() => setOpen(false)} />
+      <NewProjectModal open={newOpen} onClose={() => setNewOpen(false)} />
     </div>
   )
 }

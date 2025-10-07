@@ -42,11 +42,12 @@ body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-s
 .page-sub{margin:0 0 16px;color:var(--muted)}
 
 .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px}
-.kpi{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:14px;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center}
-.kpi-icon{width:36px;height:36px;border-radius:10px;background:#e8f0ff;display:flex;align-items:center;justify-content:center}
-.kpi-value{font-size:22px;font-weight:700}
+.kpi{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:14px;display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center}
+.kpi-icon{width:52px; font-size: 22px; height:52px; color: #E0FF63; border-radius:0px;background:#054E45;display:flex;align-items:center;justify-content:center}
+.kpi-value{font-size:22px;font-weight:700; }
 .kpi-title{color:var(--muted)}
-.kpi-sub{color:var(--muted);font-size:12px}
+.kpi-sub{color:#222222;font-size:16px; font-weight:600; }
+.kpi-foot{display:flex;justify-content:space-between;align-items:center;margin-top:8px; background-color: orange; width: 100%;}
 .kebab{border:none;background:transparent;font-size:20px;cursor:pointer}
 
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px}
