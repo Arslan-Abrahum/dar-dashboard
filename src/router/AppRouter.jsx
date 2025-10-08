@@ -3,12 +3,22 @@ import Dashboard from '../features/dashboard/Dashboard'
 import Projects from '../features/projects/Projects'
 import Designs from '../features/designs/Designs'
 import Quotations from '../features/quotations/Quotations'
+import Orders from '../features/orders/Orders'
+import Customers from '../features/customers/Customers'
+import Measurements from '../features/measurements/Measurements'
+import TeamManagement from '../features/teamManagement/TeamManagement'
+import Analytics from '../features/analytics/Analytics'
 
 const routes = {
   '/dashboard': Dashboard,
   '/projects': Projects,
   '/designs': Designs,
   '/quotations': Quotations,
+  '/orders': Orders,
+  '/customers': Customers,
+  '/measurements': Measurements,
+  '/team': TeamManagement,
+  '/analytics': Analytics,
 }
 
 function getRouteFromHash() {
