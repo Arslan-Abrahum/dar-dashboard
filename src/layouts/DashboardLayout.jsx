@@ -1,6 +1,6 @@
 import React from 'react'
 import Sidebar from './Sidebar'
-import Header from './Header'
+// import Header from './Header'
 
 function DashboardLayout({ children }) {
   return (
@@ -9,7 +9,7 @@ function DashboardLayout({ children }) {
         <Sidebar />
       </aside>
       <div className="main-area">
-        <Header />
+        {/* <Header /> */}
         <main className="content-area">
           {children}
         </main>

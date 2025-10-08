@@ -1,13 +1,16 @@
 import React from 'react'
+// import { LuBell } from "react-icons/lu";
+import {LuBell} from '../assets/icons/icons'
 
-function Header() {
+
+function Header({ title = "Dashboard", icon = null, showIcon = false }) {
   return (
     <div className="header">
-      <div className="breadcrumb">Dashboard</div>
+      <div className="breadcrumb flex items-center gap-5">
+        {showIcon ? icon : null} {title}
+      </div>
       <div className="header-actions">
-        <div className="period-select">This Month ▾</div>
-        <button className="btn primary" onClick={()=>window.dispatchEvent(new CustomEvent('open-new-project'))}>New Project ↗</button>
-        <button className="icon-btn">🔔</button>
+        <button className="icon-btn icon-bell-btn"><LuBell /></button>
         <button className="icon-btn">⋯</button>
       </div>
     </div>
