@@ -14,11 +14,11 @@ function Sidebar() {
         <a className="nav-item" href="#/projects">Projects</a>
         <a className="nav-item" href="#/designs">Designs</a>
         <a className="nav-item" href="#/quotations">Quotations</a>
-        <a className="nav-item">Orders</a>
-        <a className="nav-item">Customers</a>
-        <a className="nav-item">Measurements</a>
-        <a className="nav-item">Team Management</a>
-        <a className="nav-item">Analytics</a>
+        <a className="nav-item" href="#/orders">Orders</a>
+        <a className="nav-item" href="#/customers">Customers</a>
+        <a className="nav-item" href="#/measurements">Measurements</a>
+        <a className="nav-item" href="#/team">Team Management</a>
+        <a className="nav-item" href="#/analytics">Analytics</a>
         <a className="nav-item">Support</a>
       </nav>
       <div className="sidebar-footer">
