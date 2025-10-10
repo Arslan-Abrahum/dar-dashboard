@@ -44,7 +44,6 @@ function DetailsSlide({ open, onClose }) {
   const [tab, setTab] = useState('Overview')
 
   const footer = (
-    // <div className="slide-footer">
     <div className="footer-actions w-full bg-white py-3">
       <button
         className="cursor-pointer flex-1 flex justify-center items-center text-[#054E45] border-2 border-[#054E45] py-2 gap-2"
@@ -59,9 +58,7 @@ function DetailsSlide({ open, onClose }) {
         Assign Task <LuMoveUpRight />
       </button>
     </div>
-
   )
-
 
   return (
     <Modal open={open} onClose={onClose} width={640} footer={footer}>
@@ -109,7 +106,6 @@ function DetailsSlide({ open, onClose }) {
             </div>
           )}
         </div>
-        {/* <div className="slide-footer"><div className="footer-actions"><button className="btn">Reject</button><button className="btn primary">Assign Task ↗</button></div></div> */}
       </div>
     </Modal>
   )
@@ -127,7 +123,6 @@ function Measurements() {
             <p className="page-sub">Manage all measurements, track progress, and ensure accurate project planning.</p>
           </div>
           <div className="period-select bg-white px-3 py-2 border-2 border-[#E7E7E7]">This Month ▾</div>
-
         </div>
         <div className="kpi-grid">
           <KPI icon={<CiRuler />} sub="Total Measurements" value="17" title="Last month" />
@@ -158,7 +153,6 @@ function Measurements() {
             </div>
           </div>
         </section>
-
         <DetailsSlide open={open} onClose={() => setOpen(false)} />
       </div>
     </div>

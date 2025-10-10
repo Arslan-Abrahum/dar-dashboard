@@ -44,17 +44,16 @@ function CustomerSlide({ open, onClose }) {
 
 
   const footer = (
-    // <div className="slide-footer">
     <div className="footer-actions w-full bg-white py-3">
       <button
         className="cursor-pointer flex-1 flex justify-center items-center text-[#054E45] border-2 border-[#054E45] py-2 gap-2"
-      // onClick={onClose}
+      onClick={onClose}
       >
         <HiOutlineXMark /> CTA
       </button>
       <button
         className="cursor-pointer flex-1 flex justify-center items-center bg-[#054E45] py-2 text-white gap-2"
-      // onClick={onClose}
+      onClick={onClose}
       >
         CTA <LuMoveUpRight />
       </button>
@@ -74,8 +73,6 @@ function CustomerSlide({ open, onClose }) {
         <div className='pb-[335px]'>
           <div className="section-title">Personal Information</div>
           <div className="info-grid">
-            {/* Mails, Phone, House, Menu, Link, LuUserRound, LuFolderCog */}
-
             <div className='flex items-center gap-3'> <LuUserRound className='icon-order' /> Full Name</div><div>Esra al Khandari</div>
             <div className='flex items-center gap-3'> <Phone className='icon-order' /> Phone Number</div><div>+965 97194665</div>
             <div className='flex items-center gap-3'> <Mails className='icon-order' /> Email</div><div>MJaffer1@gmail.com</div>
@@ -131,7 +128,6 @@ function Customers() {
 
         </div>
         <div className="kpi-grid">
-          {/* UserRoundCheck, UserRoundMinus, UserRoundPlus, LuUsersRound */}
           <KPI icon={<LuUsersRound />} sub="Total Customers" value="48" title="Last month" />
           <KPI icon={<UserRoundCheck />} sub="Active" value="7" title="Last month" />
           <KPI icon={<UserRoundMinus />} sub="Inactive" value="13" title="Last month" />
@@ -160,7 +156,6 @@ function Customers() {
             </div>
           </div>
         </section>
-
         <CustomerSlide open={open} onClose={() => setOpen(false)} />
       </div>
     </div>

@@ -7,7 +7,6 @@ import {
   FaArrowLeft, FaTruck,
   FiPenTool, FaRegFolderOpen, MdArrowOutward, CiFilter,
 } from "../../assets/icons/icons";
-
 import Header from '../../layouts/Header';
 
 function KPI({ icon, title, value, sub }) {
@@ -87,7 +86,6 @@ function Projects() {
     <div className="pages">
       <Header title="Projects" icon={<FaArrowLeft className='text-[#054E45] text-[15px]' />} showIcon={true} />
       <div className="projects-page">
-        {/* <div className="breadcrumb">Projects</div> */}
         <div className='flex items-center justify-between mb-6'>
           <div>
             <h1 className="page-title">Good Morning, Sajibur</h1>
@@ -98,14 +96,12 @@ function Projects() {
             <button className="text-[#054E45] bg-white px-4 py-2 border-2 border-[#054E45] flex items-center gap-3" onClick={() => window.dispatchEvent(new CustomEvent('open-new-project'))}>New Project <MdArrowOutward /></button>
           </div>
         </div>
-
         <div className="kpi-grid">
           <KPI icon={<FaRegFolderOpen />} sub="Total Projects" value="132" title="Last month" />
           <KPI icon={<LuFolderCog />} sub="Active" value="12" title="Last month" />
           <KPI icon={<LuFolderCheck />} sub="Completed" value="114" title="Last month" />
           <KPI icon={<HiOutlineFolderArrowDown />} sub="Archived" value="16" title="Last month" />
         </div>
-
         <section className="card" style={{ marginTop: 12 }}>
           <div className="card-header">
             <div className="card-title">Project Status</div>
@@ -124,10 +120,6 @@ function Projects() {
               }
             </div>
           </div>
-          {/* <Stage title="Order" desc="Order confirmed and created" /> */}
-          {/* <Stage title="Design" desc="Design pending customer review" /> */}
-          {/* <Stage title="Production" desc="Manufacturing in progress" /> */}
-          {/* <Stage title="Delivery" desc="Scheduled for March 24, 2025" /> */}
         </section>
 
         <section className="card" style={{ marginTop: 12 }}>
@@ -135,7 +127,6 @@ function Projects() {
             <div className="card-title">Projects</div>
             <div className="table-actions">
               <input className="table-search" placeholder="Search here" />
-              {/* <button className="btn" onClick={() => setNewOpen(true)}>New Project ↗</button> */}
               <button className="btn flex items-center gap-3">Filter <CiFilter/></button>
             </div>
           </div>
@@ -162,7 +153,6 @@ function Projects() {
             </div>
           </div>
         </section>
-
         <ProjectSlideOver open={open} onClose={() => setOpen(false)} />
         <NewProjectModal open={newOpen} onClose={() => setNewOpen(false)} />
       </div>

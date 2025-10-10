@@ -1,10 +1,8 @@
-import React from 'react'
 import { 
   FaCalendarDays, LuClipboardPen, LuUserRound,
   FiPenTool, MdArrowOutward
  } from "../../assets/icons/icons";
 import Header from '../../layouts/Header';
-
 
 function KPI({ icon, title, value, sub }) {
   return (

@@ -46,7 +46,6 @@ function DetailsSlide({ open, onClose }) {
   const [activeTab, setActiveTab] = useState(2)
 
   const footer = (
-    // <div className="slide-footer">
     <div className="footer-actions w-full bg-white py-3">
       <button
         className="cursor-pointer flex-1 flex justify-center items-center text-[#054E45] border-2 border-[#054E45] py-2 gap-2"
@@ -61,7 +60,6 @@ function DetailsSlide({ open, onClose }) {
         CTA <LuMoveUpRight />
       </button>
     </div>
-
   )
 
   return (
@@ -83,7 +81,6 @@ function DetailsSlide({ open, onClose }) {
                 {['Quotation', 'Design', 'Production', 'Delivery'].map((s, i) => {
                   const activeTabs = activeTab == i
                   const iconText = 'Production' == s
-
                   return (
                     <div className={`rounded-md step ${i < 3 ? 'done' : ''}`} key={s} onClick={() => setActiveTab(i)}>
                       <div className="step-lbl mb-1">{s}</div>
@@ -116,8 +113,6 @@ function DetailsSlide({ open, onClose }) {
                 <div>
                   <div className="section-title">Order Summary</div>
                   <div className="info-grid">
-                    {/* Mails, Phone, House, Menu, Link, LuUserRound, LuFolderCog */}
-
                     <div className='flex items-center gap-3'> <Menu className='icon-order' /> Order no.</div><div>ORD-2025-0921</div>
                     <div className='flex items-center gap-3'> <FaRegFolderOpen className='icon-order' /> Linked Project</div><div>Office Fit-out</div>
                     <div className='flex items-center gap-3'> <Link className='icon-order' /> Source</div><div>DAR Designer</div>
@@ -130,8 +125,6 @@ function DetailsSlide({ open, onClose }) {
 
           {tab === 'Files' && (
             <div className='pb-40'>
-              {/* <input id="order-files" type="file" accept="application/pdf" hidden multiple /> */}
-              {/* <label htmlFor="order-files" className="h-12 my-3 block">Upload PDF</label> */}
               <div className="files-list" style={{ marginTop: 10 }}>
                 {['Design_file.pdf', 'File_info_320.pdf', 'Invoice_final.pdf'].map(n => (
                   <div className="file-row" key={n}>
@@ -171,7 +164,6 @@ function DetailsSlide({ open, onClose }) {
           )}
         </div>
       </div>
-
     </Modal>
   )
 }
@@ -188,9 +180,7 @@ function Orders() {
             <p className="page-sub">Manage all orders, monitor their status, and ensure smooth delivery.</p>
           </div>
           <div className="period-select bg-white px-3 py-2 border-2 border-[#E7E7E7]">This Month ▾</div>
-
         </div>
-
         <div className="kpi-grid">
           <KPI icon={<Package />} sub="Total Orders" value="7" title="Last month" />
           <KPI icon={<PackageOpen />} sub="Active" value="13" title="Last month" />
@@ -229,7 +219,6 @@ function Orders() {
             </div>
           </div>
         </section>
-
         <DetailsSlide open={open} onClose={() => setOpen(false)} />
       </div>
     </div>

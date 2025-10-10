@@ -3,7 +3,6 @@ import DesignSlideOver from './components/DesignSlideOver'
 import Header from '../../layouts/Header'
 import { FaArrowLeft, LuClipboardPen, FiPenTool, LuCheckCheck, GoClock } from '../../assets/icons/icons'
 
-
 function KPI({ icon, title, value, sub }) {
   return (
     <div className="kpi-box">
@@ -45,17 +44,14 @@ function Designs() {
       <Header title="Designs" icon={<FaArrowLeft className='text-[#054E45] text-[15px]' />} showIcon={true} />
       <div className="projects-page">
         <div className='flex justify-between items-center mb-6'>
-
           <div>
             <h1 className="page-title">Good Morning, Sajibur</h1>
             <p className="page-sub">Create, manage, and track all of your project designs.</p>
-
           </div>
           <div className="header-actions">
             <div className="period-select bg-white px-3 py-2 border-2 border-[#E7E7E7]">This Month ▾</div>
           </div>
         </div>
-
         <div className="kpi-grid">
           <KPI icon={<FiPenTool />} sub="Total Designs" value="48" title="Last month" />
           <KPI icon={<GoClock />} sub="Pending" value="7" title="Last month" />
@@ -94,7 +90,6 @@ function Designs() {
             </div>
           </div>
         </section>
-
         <DesignSlideOver open={viewOpen} onClose={() => setViewOpen(false)} />
       </div>
     </div>

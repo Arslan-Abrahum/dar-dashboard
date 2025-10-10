@@ -89,17 +89,6 @@ function AddRole({ open, onClose }) {
           <label className="field"><div className="field-label">Email Address</div><input className="input" placeholder="Enter Email Address" /></label>
           <label className="field"><div className="field-label">Permission & Access</div><div className="list-box">{permissions.map(p => <label key={p} className="option"><input type="checkbox" /> {p}</label>)}</div></label>
         </div>
-        {/* <div>
-          <div className="section-title">Roles - Dropdown Menu</div>
-          <input className="input" placeholder="Search roles" />
-          <div className="list-box">{roles.map(r => <div key={r}>{r}</div>)}</div>
-          <div className="section-title" style={{ marginTop: 12 }}>Permissions - Dropdown Menu</div>
-          <input className="input" placeholder="Search permissions" />
-          <div className="list-box">
-            <div className="section-title">Dashboard Access</div>
-            {permissions.map(p => <label key={p} className="option"><input type="checkbox" /> {p}</label>)}
-          </div>
-        </div> */}
       </div>
     </Modal>
   )
@@ -150,7 +139,6 @@ function TeamManagement() {
             </div>
           </div>
         </section>
-
         <InviteMember open={inviteOpen} onClose={() => setInviteOpen(false)} />
         <AddRole open={roleOpen} onClose={() => setRoleOpen(false)} />
       </div>

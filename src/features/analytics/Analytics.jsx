@@ -1,10 +1,9 @@
 import React from 'react'
 import Header from '../../layouts/Header'
 import {
-  CiRuler, FaArrowLeft, MdArrowOutward,
+  FaArrowLeft, MdArrowOutward,
   FaRegFolderOpen, PackageCheck, LuScrollText, UserRoundPlus
 } from '../../assets/icons/icons';
-
 
 function KPI({ icon, value, title, sub }) {
   return (
@@ -49,7 +48,6 @@ function Analytics() {
           </div>
         </div>
         <div className="kpi-grid">
-          {/* FaRegFolderOpen, PackageCheck, LuScrollText, UserRoundPlus */}
           <KPI icon={<FaRegFolderOpen />} sub="Total Projects" value="124" title="Last month" />
           <KPI icon={<PackageCheck />} sub="Orders Completed" value="84" title="Last month" />
           <KPI icon={<LuScrollText />} sub="Quotations Sent" value="112" title="Last month" />
@@ -60,13 +58,11 @@ function Analytics() {
             <Card title="Projects Over Time" >
               <div style={{ height: 220, background: '#f1f5f9', borderRadius: 12 }} />
             </Card>
-
           </div>
           <div className='lg:col-span-4 bg-white rounded-2xl shadow-md p-6'>
             <Card title="Orders Status">
               <div style={{ height: 220, background: '#f1f5f9', borderRadius: 12 }} />
             </Card>
-
           </div>
         </div>
         <div>
@@ -83,7 +79,6 @@ function Analytics() {
             </div>
           </Card>
         </div>
-
         <div className="grid-2">
           <Card title="Customers Growth"><div style={{ height: 220, background: '#f1f5f9', borderRadius: 12 }} /></Card>
           <Card title="Team Performance"><div style={{ height: 220, background: '#f1f5f9', borderRadius: 12 }} /></Card>

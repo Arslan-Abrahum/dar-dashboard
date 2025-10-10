@@ -284,9 +284,7 @@ function Quotations() {
             <div className="card-title">Quotations</div>
             <div className="table-actions">
               <input className="table-search" placeholder="Search here" />
-              {/* <button className="btn" onClick={() => setNewOpen(true)}>New Quotation ↗</button> */}
               <button className="btn flex items-center gap-3">Filter <CiFilter /></button>
-
             </div>
           </div>
           <div className="card-body">

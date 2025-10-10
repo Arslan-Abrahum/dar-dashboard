@@ -1,7 +1,5 @@
 import React from 'react'
-// import { LuBell } from "react-icons/lu";
 import {LuBell} from '../assets/icons/icons'
-
 
 function Header({ title = "Dashboard", icon = null, showIcon = false }) {
   return (
