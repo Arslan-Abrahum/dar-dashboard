@@ -6,14 +6,18 @@ import { FaArrowLeft, LuClipboardPen, FiPenTool, LuCheckCheck, GoClock } from '.
 
 function KPI({ icon, title, value, sub }) {
   return (
-    <div className="kpi">
-      <div className="kpi-icon">{icon}</div>
-      <div className="kpi-body">
-        <div className="kpi-value">{value}</div>
-        <div className="kpi-title">{title}</div>
+    <div className="kpi-box">
+      <div className="kpi">
+        <div className="kpi-icon">{icon}</div>
+        <div className="kpi-body">
+          <div className="kpi-value">{value}</div>
+          <div className="kpi-title">{title}</div>
+        </div>
       </div>
-      <div className="kpi-sub">{sub}</div>
-      <button className="kebab">⋯</button>
+      <div className='kpi-foot'>
+        <div className="kpi-sub">{sub}</div>
+        <button className="kebab">⋯</button>
+      </div>
     </div>
   )
 }
@@ -40,7 +44,7 @@ function Designs() {
     <div className='pages'>
       <Header title="Designs" icon={<FaArrowLeft className='text-[#054E45] text-[15px]' />} showIcon={true} />
       <div className="projects-page">
-        <div className='flex justify-between items-center'>
+        <div className='flex justify-between items-center mb-6'>
 
           <div>
             <h1 className="page-title">Good Morning, Sajibur</h1>

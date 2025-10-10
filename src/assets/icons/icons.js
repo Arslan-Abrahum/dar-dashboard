@@ -1,9 +1,9 @@
 import {
-    FaRegFolderOpen, FaScroll
+    FaRegFolderOpen, FaScroll,
  } from 'react-icons/fa';
 
 import { 
-    FaArrowLeft, FaTruck, FaCalendarDays
+    FaArrowLeft, FaTruck, FaCalendarDays, FaCheck
 } from 'react-icons/fa6';
 
 import {
@@ -41,13 +41,18 @@ import { BsFillBoxSeamFill } from 'react-icons/bs';
 // import { } from 'react-icons/di';
 
 import {
-    CiRuler , CiFilter
+    CiRuler , CiFilter, CiCalendar,
 } from 'react-icons/ci';
 
 import {
     LuBell, LuFolderCog, LuFolderCheck, LuCheckCheck, LuMoveUpRight,
-    LuClipboardPen, LuScrollText, LuUserRound, LuUsersRound, LuChartSpline, LuSlidersHorizontal
+    LuClipboardPen, LuScrollText, LuUserRound, LuUsersRound, LuChartSpline, LuSlidersHorizontal,
+    LuCircleDollarSign, LuHourglass
 } from 'react-icons/lu';
+import { 
+    Package, PackageOpen, PackageX, PackageCheck, UserRoundPen,
+    Mails, Phone, House, Menu, Link, UserRoundCheck, UserRoundMinus, UserRoundPlus, 
+ } from 'lucide-react';
 
 import {
     RxDashboard 
@@ -61,7 +66,7 @@ import {
 // import { } from 'react-icons/fc';
 
 import {
-    GoClock, GoSidebarExpand,
+    GoClock, GoSidebarExpand, GoPlus
  } from 'react-icons/go';
 
 // import { } from 'react-icons/gd';
@@ -72,7 +77,7 @@ export {
     FaRegFolderOpen, FaScroll,
 
     // Font Awesome 6
-     FaArrowLeft, FaTruck, FaCalendarDays,
+     FaArrowLeft, FaTruck, FaCalendarDays, FaCheck,
 
     // Feather Icons
     FiPenTool, FiSearch,
@@ -121,11 +126,16 @@ export {
 
 
     // Circum Icons
-    CiRuler, CiFilter,
+    CiRuler, CiFilter, CiCalendar,
 
     // Lucide Icons
     LuBell, LuFolderCog, LuFolderCheck, LuCheckCheck, LuMoveUpRight,
     LuClipboardPen, LuScrollText, LuUserRound, LuUsersRound, LuChartSpline, LuSlidersHorizontal,
+    LuCircleDollarSign, LuHourglass,
+
+    // Lucide React Icons
+    Package, PackageOpen, PackageX, PackageCheck, UserRoundPen,
+    Mails, Phone, House, Menu, Link, UserRoundCheck, UserRoundMinus, UserRoundPlus,
 
     // Radix Icons
     RxDashboard,
@@ -144,7 +154,7 @@ export {
 
     // GitHub Octicons Icons
     GoClock,
-    GoSidebarExpand,
+    GoSidebarExpand, GoPlus
 
     // Game Icons
 

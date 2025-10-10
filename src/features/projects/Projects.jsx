@@ -100,10 +100,10 @@ function Projects() {
         </div>
 
         <div className="kpi-grid">
-          <KPI icon={<FaRegFolderOpen />} title="Total Projects" value="132" sub="Last month" />
-          <KPI icon={<LuFolderCog />} title="Active" value="12" sub="Last month" />
-          <KPI icon={<LuFolderCheck />} title="Completed" value="114" sub="Last month" />
-          <KPI icon={<HiOutlineFolderArrowDown />} title="Archived" value="16" sub="Last month" />
+          <KPI icon={<FaRegFolderOpen />} sub="Total Projects" value="132" title="Last month" />
+          <KPI icon={<LuFolderCog />} sub="Active" value="12" title="Last month" />
+          <KPI icon={<LuFolderCheck />} sub="Completed" value="114" title="Last month" />
+          <KPI icon={<HiOutlineFolderArrowDown />} sub="Archived" value="16" title="Last month" />
         </div>
 
         <section className="card" style={{ marginTop: 12 }}>

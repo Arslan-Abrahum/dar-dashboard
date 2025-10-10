@@ -1,21 +1,25 @@
 import React, { useMemo, useState } from 'react'
 import Modal from '../../components/common/Modal'
 import {
-  FaArrowLeft, MdArrowOutward, MdLibraryAddCheck,
+  FaArrowLeft, MdArrowOutward, PackageX,
   LuCheckCheck, FaScroll, LuScrollText, CiFilter, HiOutlineXMark, LuMoveUpRight
 } from '../../assets/icons/icons'
 import Header from '../../layouts/Header'
 
 function KPI({ icon, title, value, sub }) {
   return (
-    <div className="kpi">
-      <div className="kpi-icon">{icon}</div>
-      <div className="kpi-body">
-        <div className="kpi-value">{value}</div>
-        <div className="kpi-title">{title}</div>
+    <div className="kpi-box">
+      <div className="kpi">
+        <div className="kpi-icon">{icon}</div>
+        <div className="kpi-body">
+          <div className="kpi-value">{value}</div>
+          <div className="kpi-title">{title}</div>
+        </div>
       </div>
-      <div className="kpi-sub">{sub}</div>
-      <button className="kebab">⋯</button>
+      <div className='kpi-foot'>
+        <div className="kpi-sub">{sub}</div>
+        <button className="kebab">⋯</button>
+      </div>
     </div>
   )
 }
@@ -264,7 +268,7 @@ function Quotations() {
           </div>
           <div className="header-actions">
             <div className="period-select bg-white px-3 py-2 border-2 border-[#E7E7E7]">This Month ▾</div>
-            <button className="text-[#054E45] bg-white px-4 py-2 border-2 border-[#054E45] flex items-center gap-3" onClick={() => setNewOpen(true)}>New Quotation <MdArrowOutward /></button>
+            <button className="text-[#054E45] bg-white px-3 py-2 border-2 border-[#054E45] flex items-center gap-2" onClick={() => setNewOpen(true)}>New Quotation <MdArrowOutward /></button>
           </div>
         </div>
 
@@ -272,7 +276,7 @@ function Quotations() {
           <KPI icon={<LuScrollText />} sub="Total Quotations" value="48" title="Last month" />
           <KPI icon={<FaScroll />} sub="To Be Generated" value="7" title="Last month" />
           <KPI icon={<LuCheckCheck />} sub="Approved" value="13" title="Last month" />
-          <KPI icon={<MdLibraryAddCheck />} sub="Rejected" value="11" title="Last month" />
+          <KPI icon={<PackageX />} sub="Rejected" value="11" title="Last month" />
         </div>
 
         <section className="card" style={{ marginTop: 12 }}>

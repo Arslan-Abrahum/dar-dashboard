@@ -5,9 +5,12 @@
   --panel:#ffffff; /* card/side panels */
   --text:#0f172a; /* slate-900 */
   --black: #000000;
+  --blackish: #222222;
   --muted:#6b7280;
+  --icon-clr: #E0FF63;
   --darkgrey: #222222CC;
   --border:#e5e7eb;
+  --dark-border: #DDDDDD;
   --primary:#2563eb;
   --link: #054E45;
   --success:#22c55e;
@@ -26,8 +29,9 @@ body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-s
 .search{padding:0 16px 12px}
 .search input{width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--border)}
 .nav{display:flex;flex-direction:column;padding:8px}
-.nav-item{padding:10px 12px;border-radius:8px;color:#111827;text-decoration:none;cursor:pointer}
-.nav-item.active,.nav-item:hover{background:#f1f5f9}
+.nav-item{padding:5px 12px;border-radius:8px;color:#111827;text-decoration:none;cursor:pointer}
+/* .nav-item.active, */
+/* .nav-item:hover{background:} */
 .sidebar-footer{margin-top:auto;padding:12px;border-top:1px solid var(--border)}
 .user{display:flex;gap:10px;align-items:center}
 .avatar{width:28px;height:28px;border-radius:999px;background:#e2e8f0}
@@ -115,29 +119,42 @@ body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-s
 .slide-head{position:sticky;top:0;background:var(--panel)}
 .slide-title{font-size:18px;font-weight:700}
 .slide-sub{color:var(--muted);margin-top:4px;margin-bottom:8px}
-.tabs{display:flex;gap:12px;border-bottom:1px solid var(--border)}
-.tab-btn{padding:10px 6px;border:none;background:transparent;border-bottom:2px solid transparent;cursor:pointer}
+.tabs{display:flex; justify-content: space-around;gap:12px;border-bottom:1px solid var(--border)}
+.tab-btn{padding:10px 6px; width: 100%; background: transparent; border:none;border-bottom:2px solid transparent;cursor:pointer}
 .tab-btn.active{border-bottom-color:#0f766e;color:#0f766e}
 .slide-body{padding-top:10px}
 .slide-footer{margin-top:auto}
 
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.info-grid{display:grid;grid-template-columns:220px 1fr;gap:8px;padding:10px;border:1px solid var(--border);border-radius:10px}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px;border:1px solid var(--border);border-radius:10px}
+.info-grid > div:nth-child(odd) {
+  text-align: left; 
+}
+.info-grid > div:nth-child(even) {
+  text-align: right; 
+}
+.icon-order {
+  color: var(--link);
+  font-size: 14px;
+  height: 18px;
+  width: 18px;
+}
 .section-title{font-weight:600;margin:8px 0}
-.note-box{border:1px solid var(--border);border-radius:10px;padding:12px;color:var(--muted)}
+.note-box{border:1px solid var(--border);border-radius:10px;padding:12px;color:var(--blackish)}
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:8px 0 12px}
 .step{display:flex;flex-direction:column;align-items:center;gap:6px;padding:8px;border:1px dashed var(--border);border-radius:10px}
 .step.done{border-style:solid}
-.step-ic{width:36px;height:36px;border-radius:10px;background:#064e3b;color:white;display:flex;align-items:center;justify-content:center}
+.step-ic{width:40px;height:40px; border-radius:2px;background:#064E45; display:flex;align-items:center;justify-content:center}
 .items-list{display:grid;gap:10px}
 .item-row{display:grid;grid-template-columns:60px 1fr 100px;gap:10px;align-items:center;padding:10px;border-bottom:1px solid var(--border)}
 .thumb{width:60px;height:44px;background:#e2e8f0;border-radius:8px}
 .item-sub{color:var(--muted);font-size:12px}
 .item-price{font-weight:700;text-align:right}
 .files-list{display:grid;gap:8px;margin-top:10px}
-.file-row{display:grid;grid-template-columns:40px 1fr 24px;align-items:center;border:1px solid var(--border);border-radius:10px;padding:10px}
-.file-ic{width:28px;height:28px;border-radius:6px;background:#fee2e2;color:#b91c1c;display:flex;align-items:center;justify-content:center;font-weight:700}
-
+.file-row{display:grid;grid-template-columns:90px 1fr 24px;align-items:center;border:1px solid var(--dark-border);border-radius:10px;padding:10px; background: #FBFBF9; }
+.file-ic{width:64px;height:64px;border-radius:6px;color:#b91c1c;display:flex;align-items:center;justify-content:center;font-weight:700}
+.file-ic img { width: 45px; height: auto; }
+.step-lbl { font-weight: bold; font-size: 12px; line-height: 16px; }
 /* New Project */
 .form-grid{display:grid;gap:14px;margin-top:10px}
 .field{display:flex;flex-direction:column;gap:6px}
