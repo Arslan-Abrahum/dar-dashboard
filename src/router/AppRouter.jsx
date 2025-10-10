@@ -8,6 +8,7 @@ import Customers from '../features/customers/Customers'
 import Measurements from '../features/measurements/Measurements'
 import TeamManagement from '../features/teamManagement/TeamManagement'
 import Analytics from '../features/analytics/Analytics'
+// auth temporarily disabled
 
 const routes = {
   '/dashboard': Dashboard,
@@ -19,6 +20,7 @@ const routes = {
   '/measurements': Measurements,
   '/team': TeamManagement,
   '/analytics': Analytics,
+  // '/login': Login,
 }
 
 function getRouteFromHash() {
