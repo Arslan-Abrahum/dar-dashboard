@@ -1,15 +1,17 @@
 import React, { useMemo, useRef, useState } from 'react'
 import Modal from '../../../components/common/Modal'
+import { useLanguage } from '../../../i18n/LanguageProvider'
 
 function TabButton({ label, active, onClick }) {
   return <button className={`tab-btn ${active ? 'active' : ''}`} onClick={onClick}>{label}</button>
 }
 
 function OverviewTab() {
+  const { t } = useLanguage()
   return (
     <div className="proj-overview">
       <div className="steps">
-        {['Quotation','Design','Production','Delivery'].map((s,i)=> (
+        {[t('quotation'), t('designs'), t('production'), t('delivery')].map((s,i)=> (
           <div className={`step ${i<3?'done':''}`} key={s}>
             <div className="step-ic">✓</div>
             <div className="step-lbl">{s}</div>
@@ -19,7 +21,7 @@ function OverviewTab() {
 
       <div className="two-col">
         <div>
-          <div className="section-title">Customer Information</div>
+          <div className="section-title">{t('customer_information')}</div>
           <div className="info-grid">
             <div>Customer Name</div><div>Esra al Khandari</div>
             <div>Customer Number</div><div>+965 97194665</div>
@@ -28,7 +30,7 @@ function OverviewTab() {
           </div>
         </div>
         <div>
-          <div className="section-title">Project Summary</div>
+          <div className="section-title">{t('project_summary') || 'Project Summary'}</div>
           <div className="info-grid">
             <div>Order ID</div><div>ORD-2025-0921</div>
             <div>Items</div><div>06</div>
@@ -38,7 +40,7 @@ function OverviewTab() {
         </div>
       </div>
 
-      <div className="section-title" style={{marginTop:12}}>Notes</div>
+      <div className="section-title" style={{marginTop:12}}>{t('notes')}</div>
       <div className="note-box">Lorem ipsum dolor sit amet consectetur. Velit ipsum adipiscing volutpat ipsum habitant in elementum. Enim habitant congue nunc sit orci.</div>
     </div>
   )
@@ -77,10 +79,11 @@ function FilesTab() {
     const pdfs = list.filter(f=> f.type === 'application/pdf')
     setFiles(prev => [...prev, ...pdfs.map(f=>({name:f.name, size:f.size}))])
   }
+  const { t } = useLanguage()
   return (
     <div>
       <input ref={inputRef} type="file" accept="application/pdf" hidden multiple onChange={onFiles} />
-      <button className="btn" onClick={onChoose}>Upload PDF</button>
+      <button className="btn" onClick={onChoose}>{t('upload_pdf') || 'Upload PDF'}</button>
       <div className="files-list">
         {files.map(f=> (
           <div className="file-row" key={f.name}>
@@ -95,24 +98,25 @@ function FilesTab() {
 }
 
 function PaymentsTab() {
+  const { t } = useLanguage()
   return (
     <div className="payments">
-      <div className="section-title">Payment Details</div>
+      <div className="section-title">{t('payment_details')}</div>
       <div className="info-grid">
-        <div>Order No</div><div>OR-08765</div>
-        <div>Customer</div><div>Omer</div>
-        <div>Total Amount</div><div>$50,000</div>
-        <div>Paid Amount</div><div>$25,000</div>
-        <div>Remaining Amount</div><div>$25,000</div>
+        <div>{t('order_no')}</div><div>OR-08765</div>
+        <div>{t('customer')}</div><div>Omer</div>
+        <div>{t('total_amount')}</div><div>$50,000</div>
+        <div>{t('paid_amount')}</div><div>$25,000</div>
+        <div>{t('remaining_amount')}</div><div>$25,000</div>
       </div>
-      <div className="section-title" style={{marginTop:12}}>Payment History</div>
+      <div className="section-title" style={{marginTop:12}}>{t('payment_history')}</div>
       <div className="table payments-table">
         <div className="thead" style={{gridTemplateColumns:'80px 1fr 160px 140px 120px'}}>
-          <div>No</div><div>Services</div><div>Amount</div><div>Status</div><div>Actions</div>
+          <div>{t('no')}</div><div>{t('services')}</div><div>{t('amount')}</div><div>{t('status')}</div><div>{t('actions')}</div>
         </div>
         {[1,2,3,4].map(i=> (
           <div className="trow" key={i} style={{gridTemplateColumns:'80px 1fr 160px 140px 120px'}}>
-            <div>0{i}</div><div>Measurement</div><div>$25,000</div><div><span className="status info">Paid</span></div><div>⋯</div>
+            <div>0{i}</div><div>{t('measurement')}</div><div>$25,000</div><div><span className="status info">{t('paid')}</span></div><div>⋯</div>
           </div>
         ))}
       </div>
@@ -121,8 +125,14 @@ function PaymentsTab() {
 }
 
 function ProjectSlideOver({ open, onClose }) {
+  const { t } = useLanguage()
   const [tab, setTab] = useState('Overview')
-  const tabs = ['Overview','Items','Files','Payments']
+  const tabs = [
+    { key: 'Overview', label: t('overview') },
+    { key: 'Items', label: t('items') },
+    { key: 'Files', label: t('files') },
+    { key: 'Payments', label: t('payments') },
+  ]
   const body = {
     Overview: <OverviewTab />,
     Items: <ItemsTab />,
@@ -132,20 +142,20 @@ function ProjectSlideOver({ open, onClose }) {
 
   const footer = (
     <div className="footer-actions">
-      <button className="btn">✗ CTA</button>
-      <button className="btn primary">CTA ↗</button>
+      <button className="btn">✗ {t('close')}</button>
+      <button className="btn primary">{t('open_project')} ↗</button>
     </div>
   )
 
   return (
-    <Modal open={open} onClose={onClose} width={520}>
+    <Modal open={open} onClose={onClose} title={`PRJ-2025-021`} width={520}>
       <div className="slide-over">
         <div className="slide-head">
           <div className="slide-title">PRJ-2025-021</div>
-          <div className="slide-sub">Below are all the details about this project.</div>
+          <div className="slide-sub">{t('project_status')} - {t('project')}</div>
           <div className="tabs">
-            {tabs.map(t=> (
-              <TabButton key={t} label={t} active={t===tab} onClick={()=>setTab(t)} />
+            {tabs.map(tabObj=> (
+              <TabButton key={tabObj.key} label={tabObj.label} active={tabObj.key===tab} onClick={()=>setTab(tabObj.key)} />
             ))}
           </div>
         </div>

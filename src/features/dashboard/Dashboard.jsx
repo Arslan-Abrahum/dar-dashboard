@@ -3,6 +3,7 @@ import {
   FiPenTool, MdArrowOutward
  } from "../../assets/icons/icons";
 import Header from '../../layouts/Header';
+import { useLanguage } from '../../i18n/LanguageProvider'
 
 function KPI({ icon, title, value, sub }) {
   return (
@@ -75,31 +76,32 @@ function ActivityItem({ title = 'Ali booked an appointment for 3 Sep' }) {
 }
 
 function Dashboard() {
+  const { t } = useLanguage()
   return (
     <div className="pages">
-      <Header title="Dashboard" icon={null} showIcon={false} />
+      <Header title="dashboard" icon={null} showIcon={false} />
       <div className="dashboard-page">
         <div className='flex items-center justify-between mb-6'>
           <div>
-            <h1 className="page-title">Good Morning, Sajibur</h1>
-            <p className="page-sub">Here is an overview of your financial health and recent activity.</p>
+            <h1 className="page-title">{t('good_morning')}, Sajibur</h1>
+            <p className="page-sub">{t('view_details')} - {t('recent_activity')}</p>
           </div>
           <div className="header-actions">
-            <div className="period-select bg-white px-3 py-2 border-2 border-[#E7E7E7]">This Month ▾</div>
-            <button className="text-[#054E45] bg-white px-4 py-2 border-2 border-[#054E45] flex items-center gap-3" onClick={() => window.dispatchEvent(new CustomEvent('open-new-project'))}>New Project <MdArrowOutward/></button>
+            <div className="period-select bg-white px-3 py-2 border-2 border-[#E7E7E7]">{t('this_month')} ▾</div>
+            <button className="text-[#054E45] bg-white px-4 py-2 border-2 border-[#054E45] flex items-center gap-3" onClick={() => window.dispatchEvent(new CustomEvent('open-new-project'))}>{t('new_project')} <MdArrowOutward/></button>
           </div>
         </div>
         <div className="kpi-grid">
-          <KPI icon={<FaCalendarDays />} title="Upcoming this week" value="132" sub='Total Appointments' />
-          <KPI icon={<LuClipboardPen />} title="Currently active in que" value="132" sub='Active Orders' />
-          <KPI icon={<FiPenTool />} title="Drafts awaiting review." value="132" sub='Pending Designs' />
-          <KPI icon={<LuUserRound />} title="This month" value="132" sub='New Customers' />
+          <KPI icon={<FaCalendarDays />} title={t('upcoming_appointments') || 'Upcoming this week'} value="132" sub={t('upcoming_appointments') || 'Total Appointments'} />
+          <KPI icon={<LuClipboardPen />} title={t('pending_orders') || 'Currently active in que'} value="132" sub={t('pending_orders') || 'Active Orders'} />
+          <KPI icon={<FiPenTool />} title={t('recent_activity') || 'Drafts awaiting review.'} value="132" sub={t('recent_activity') || 'Pending Designs'} />
+          <KPI icon={<LuUserRound />} title={t('this_month') || 'This month'} value="132" sub={t('new_customers') || 'New Customers'} />
         </div>
         <div className="grid-2">
           <section className="card">
             <div className="card-header">
-              <div className="card-title">Upcoming Appointments</div>
-              <a className="link">View all</a>
+              <div className="card-title">{t('upcoming_appointments')}</div>
+              <a className="link">{t('view_all')}</a>
             </div>
             <div className="card-body spaced">
               <AppointmentItem />
@@ -110,8 +112,8 @@ function Dashboard() {
 
           <section className="card">
             <div className="card-header">
-              <div className="card-title">Pending Orders</div>
-              <a className="link">View all</a>
+              <div className="card-title">{t('pending_orders')}</div>
+              <a className="link">{t('view_all')}</a>
             </div>
             <div className="card-body orders">
               <OrderCard />
@@ -124,8 +126,8 @@ function Dashboard() {
         <div className="grid-1">
           <section className="card">
             <div className="card-header">
-              <div className="card-title">Recent Activity</div>
-              <a className="link">Show all</a>
+              <div className="card-title">{t('recent_activity')}</div>
+              <a className="link">{t('view_all')}</a>
             </div>
             <div className="card-body spaced">
               <ActivityItem />

@@ -1,41 +1,44 @@
 import React, { useState } from 'react'
 import Modal from '../../../components/common/Modal'
 import {HiOutlineXMark, LuMoveUpRight} from '../../../assets/icons/icons'
+import { useLanguage } from '../../../i18n/LanguageProvider'
 
 function Tab({ label, active, onClick }) {
   return <button className={`tab-btn ${active ? 'active' : ''}`} onClick={onClick}>{label}</button>
 }
 
 function Overview() {
+  const { t } = useLanguage()
   return (
     <div>
-      <div className="section-title">Customer Information</div>
+      <div className="section-title">{t('customer_information')}</div>
       <div className="info-grid">
-        <div>Customer Name</div><div>Esra al Khandari</div>
-        <div>Customer Number</div><div>+965 97194665</div>
-        <div>Email</div><div>MJaffer1@gmail.com</div>
-        <div>Delivery Address</div><div>Park View City, Kuwait</div>
+        <div>{t('full_name')}</div><div>Esra al Khandari</div>
+        <div>{t('phone')}</div><div>+965 97194665</div>
+        <div>{t('email_address')}</div><div>MJaffer1@gmail.com</div>
+        <div>{t('delivery_address')}</div><div>Park View City, Kuwait</div>
       </div>
 
-      <div className="section-title" style={{ marginTop: 12 }}>Design Summary</div>
+      <div className="section-title" style={{ marginTop: 12 }}>{t('design_summary')}</div>
       <div className="info-grid">
-        <div>Design ID</div><div>ORD-2025-0921</div>
-        <div>Project Name</div><div>Villa Kitchen Upgrade</div>
-        <div>Designer</div><div>Abdol Feghali</div>
-        <div>Revisions</div><div>4 Rounds</div>
+        <div>{t('design_id')}</div><div>ORD-2025-0921</div>
+        <div>{t('project_name')}</div><div>Villa Kitchen Upgrade</div>
+        <div>{t('designer')}</div><div>Abdol Feghali</div>
+        <div>{t('revisions')}</div><div>4 Rounds</div>
       </div>
 
-      <div className="section-title" style={{ marginTop: 12 }}>Assignees</div>
+      <div className="section-title" style={{ marginTop: 12 }}>{t('assignees')}</div>
       <div className="info-grid">
-        <div>Assignee 1</div><div>Abdol Feghali</div>
-        <div>Assignee 2</div><div>Lisa Wong</div>
-        <div>Assignee 3</div><div>Mohammed Ali</div>
+        <div>{t('assignee')} 1</div><div>Abdol Feghali</div>
+        <div>{t('assignee')} 2</div><div>Lisa Wong</div>
+        <div>{t('assignee')} 3</div><div>Mohammed Ali</div>
       </div>
     </div>
   )
 }
 
 function DesignTab() {
+  const { t } = useLanguage()
   const [comments, setComments] = useState([
     { id: 1, author: 'Emilia Joseph', time: '2 days ago', text: 'Design is fine but it lacks spacing for breathing space in the room.' },
     { id: 2, author: 'Try StewardS', time: '40 minutes ago', text: 'Design is fine but it lacks spacing for breathing space in the room.' },
@@ -50,10 +53,10 @@ function DesignTab() {
 
   return (
     <div>
-      <div className="section-title">Design Preview</div>
+      <div className="section-title">{t('design_preview')}</div>
       <div className="thumb" style={{ height: 180, borderRadius: 12 }} />
 
-      <div className="section-title" style={{ marginTop: 12 }}>Comments</div>
+      <div className="section-title" style={{ marginTop: 12 }}>{t('comments')}</div>
       <div className="comments">
         {comments.map(c => (
           <div className="comment" key={c.id}>
@@ -66,7 +69,7 @@ function DesignTab() {
         ))}
         <div className="comment new">
           <div className="avatar" />
-          <input className="input" placeholder="Add Comment" value={newText} onChange={e => setNewText(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') add() }} />
+          <input className="input" placeholder={t('add_comment')} value={newText} onChange={e => setNewText(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') add() }} />
         </div>
       </div>
     </div>
@@ -74,16 +77,17 @@ function DesignTab() {
 }
 
 function DesignSlideOver({ open, onClose }) {
+  const { t } = useLanguage()
   const [tab, setTab] = useState('Overview')
   return (
     <Modal open={open} onClose={onClose} width={520}>
       <div className="slide-over">
         <div className="slide-head">
           <div className="slide-title">DSG-2025-011</div>
-          <div className="slide-sub">Below are all the details about this design.</div>
+          <div className="slide-sub">{t('design_details_subtitle')}</div>
           <div className="tabs">
-            <Tab label="Overview" active={tab === 'Overview'} onClick={() => setTab('Overview')} />
-            <Tab label="Design" active={tab === 'Design'} onClick={() => setTab('Design')} />
+            <Tab label={t('overview')} active={tab === 'Overview'} onClick={() => setTab('Overview')} />
+            <Tab label={t('design_tab')} active={tab === 'Design'} onClick={() => setTab('Design')} />
           </div>
         </div>
         <div className="slide-body">
@@ -97,13 +101,13 @@ function DesignSlideOver({ open, onClose }) {
               className="flex-1 flex justify-center items-center text-[#054E45] border-2 border-[#054E45] py-2 gap-2"
               onClick={onClose}
             >
-              <HiOutlineXMark /> CTA
+              <HiOutlineXMark /> {t('close')}
             </button>
             <button
               className="flex-1 flex justify-center items-center bg-[#054E45] py-2 text-white gap-2"
               onClick={onClose}
             >
-              CTA <LuMoveUpRight />
+              {t('open_design')} <LuMoveUpRight />
             </button>
           </div>
           {/* Footer */}

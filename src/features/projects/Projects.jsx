@@ -8,6 +8,7 @@ import {
   FiPenTool, FaRegFolderOpen, MdArrowOutward, CiFilter,
 } from "../../assets/icons/icons";
 import Header from '../../layouts/Header';
+import { useLanguage } from '../../i18n/LanguageProvider'
 
 function KPI({ icon, title, value, sub }) {
   return (
@@ -44,39 +45,40 @@ function Stage({ title, desc, icon, isActive }) {
 }
 
 function Projects() {
+  const { t } = useLanguage()
   const [open, setOpen] = useState(false)
   const [newOpen, setNewOpen] = useState(false)
   const [activeStatus, setActiveStatus] = useState(2)
 
   const stages = [
     {
-      title: "Quotation",
-      desc: "Quotation approved by customer",
+      title: t('quotation'),
+      desc: t('quotation_approved'),
       icon: <LuCheckCheck />,
       active: true,
     },
     {
-      title: "Order",
-      desc: "Order confirmed and created",
+      title: t('order'),
+      desc: t('order_confirmed'),
       icon: <LuCheckCheck />,
       active: true,
     },
     {
-      title: "Design",
-      desc: "Design pending customer review",
+      title: t('designs'),
+      desc: t('design_pending_review'),
       icon: <FiPenTool />,
       active: true,
       current: true,
     },
     {
-      title: "Production",
-      desc: "Manufacturing in progress",
+      title: t('production'),
+      desc: t('manufacturing_progress'),
       icon: <HiMiniCube />,
       active: false,
     },
     {
-      title: "Delivery",
-      desc: "Scheduled for March 24, 2025",
+      title: t('delivery'),
+      desc: t('scheduled_delivery', { date: 'March 24, 2025' }) || 'Scheduled for March 24, 2025',
       icon: <FaTruck />,
       active: false,
     },
@@ -84,28 +86,28 @@ function Projects() {
 
   return (
     <div className="pages">
-      <Header title="Projects" icon={<FaArrowLeft className='text-[#054E45] text-[15px]' />} showIcon={true} />
+      <Header title="projects" icon={<FaArrowLeft className='text-[#054E45] text-[15px]' />} showIcon={true} />
       <div className="projects-page">
         <div className='flex items-center justify-between mb-6'>
           <div>
-            <h1 className="page-title">Good Morning, Sajibur</h1>
-            <p className="page-sub">Manage and track all customer projects from quotation to delivery.</p>
+            <h1 className="page-title">{t('good_morning')}, Sajibur</h1>
+            <p className="page-sub">{t('project_status')} - {t('recent_activity')}</p>
           </div>
           <div className="header-actions">
-            <div className="period-select bg-white px-3 py-2 border-2 border-[#E7E7E7]">This Month ▾</div>
-            <button className="text-[#054E45] bg-white px-4 py-2 border-2 border-[#054E45] flex items-center gap-3" onClick={() => window.dispatchEvent(new CustomEvent('open-new-project'))}>New Project <MdArrowOutward /></button>
+            <div className="period-select bg-white px-3 py-2 border-2 border-[#E7E7E7]">{t('this_month')} ▾</div>
+            <button className="text-[#054E45] bg-white px-4 py-2 border-2 border-[#054E45] flex items-center gap-3" onClick={() => window.dispatchEvent(new CustomEvent('open-new-project'))}>{t('new_project')} <MdArrowOutward /></button>
           </div>
         </div>
         <div className="kpi-grid">
-          <KPI icon={<FaRegFolderOpen />} sub="Total Projects" value="132" title="Last month" />
-          <KPI icon={<LuFolderCog />} sub="Active" value="12" title="Last month" />
-          <KPI icon={<LuFolderCheck />} sub="Completed" value="114" title="Last month" />
-          <KPI icon={<HiOutlineFolderArrowDown />} sub="Archived" value="16" title="Last month" />
+          <KPI icon={<FaRegFolderOpen />} sub={t('projects')} value="132" title="Last month" />
+          <KPI icon={<LuFolderCog />} sub={t('active') || 'Active'} value="12" title="Last month" />
+          <KPI icon={<LuFolderCheck />} sub={t('completed') || 'Completed'} value="114" title="Last month" />
+          <KPI icon={<HiOutlineFolderArrowDown />} sub={t('archived') || 'Archived'} value="16" title="Last month" />
         </div>
         <section className="card" style={{ marginTop: 12 }}>
           <div className="card-header">
-            <div className="card-title">Project Status</div>
-          </div>
+              <div className="card-title">{t('project_status')}</div>
+            </div>
           <div className="card-body">
             <div className="stage-row grid grid-cols-1  lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 gap-5">
               {
@@ -124,30 +126,30 @@ function Projects() {
 
         <section className="card" style={{ marginTop: 12 }}>
           <div className="card-header">
-            <div className="card-title">Projects</div>
+            <div className="card-title">{t('projects')}</div>
             <div className="table-actions">
-              <input className="table-search" placeholder="Search here" />
-              <button className="btn flex items-center gap-3">Filter <CiFilter/></button>
+              <input className="table-search" placeholder={t('search_placeholder')} />
+              <button className="btn flex items-center gap-3">{t('filter')} <CiFilter/></button>
             </div>
           </div>
           <div className="card-body">
             <div className="table">
               <div className="thead">
-                <div>ID</div>
-                <div>Project</div>
-                <div>Customer</div>
-                <div>Status</div>
-                <div>Current Stage</div>
-                <div>Actions</div>
+                <div>{t('id')}</div>
+                <div>{t('project')}</div>
+                <div>{t('customer')}</div>
+                <div>{t('status')}</div>
+                <div>{t('current_stage')}</div>
+                <div>{t('actions')}</div>
               </div>
               {[1, 2, 3, 4, 5].map((i) => (
                 <div className="trow" key={i}>
                   <div>PRJ-2025-021</div>
                   <div>Modern Kitchen Remodel</div>
                   <div>Ali Hassan</div>
-                  <div><span className="status success">Completed</span></div>
-                  <div>Design</div>
-                  <div><button className="link flex items-center gap-1" onClick={() => setOpen(true)}>View Details <MdArrowOutward /></button></div>
+                  <div><span className="status success">{t('completed')}</span></div>
+                  <div>{t('designs')}</div>
+                  <div><button className="link flex items-center gap-1" onClick={() => setOpen(true)}>{t('view_details')} <MdArrowOutward /></button></div>
                 </div>
               ))}
             </div>

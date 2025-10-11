@@ -7,20 +7,21 @@ import {
   CiRuler, HiOutlineSupport, Package, FiSearch, GoSidebarExpand,
 } from "../assets/icons/icons";
 import LogoDar from '../assets/images/logodar.png';
+import { useLanguage } from '../i18n/LanguageProvider';
 
-const menuItems = [
+const menuItems = (t) => [
   {
     items: [
-      { name: "Dashboard", icon: <RxDashboard />, href: "#/dashboard" },
-      { name: "Projects", icon: <FaRegFolderOpen />, href: "#/projects", section: 'MAIN' },
-      { name: "Designs", icon: <FiPenTool />, href: "#/designs" },
-      { name: "Quotations", icon: <LuScrollText />, href: "#/quotations" },
-      { name: "Orders", icon: <Package />, href: "#/orders" },
-      { name: "Customers", icon: <LuUserRound />, href: "#/customers" },
-      { name: "Measurements", icon: <CiRuler />, href: "#/measurements" },
-      { name: "Team Management", icon: <LuUsersRound />, href: "#/team" },
-      { name: "Analytics", icon: <LuChartSpline />, href: "#/analytics" },
-      { name: "Support", icon: <HiOutlineSupport />, href: "#/support" },
+      { name: t('dashboard'), icon: <RxDashboard />, href: "#/dashboard" },
+      { name: t('projects'), icon: <FaRegFolderOpen />, href: "#/projects", section: 'MAIN' },
+      { name: t('designs'), icon: <FiPenTool />, href: "#/designs" },
+      { name: t('quotations'), icon: <LuScrollText />, href: "#/quotations" },
+      { name: t('orders'), icon: <Package />, href: "#/orders" },
+      { name: t('customers'), icon: <LuUserRound />, href: "#/customers" },
+      { name: t('measurements'), icon: <CiRuler />, href: "#/measurements" },
+      { name: t('team_management'), icon: <LuUsersRound />, href: "#/team" },
+      { name: t('analytics'), icon: <LuChartSpline />, href: "#/analytics" },
+      { name: t('support'), icon: <HiOutlineSupport />, href: "#/support" },
     ]
   },
 ];
@@ -33,6 +34,9 @@ function Sidebar() {
     localStorage.setItem("activeTab", activeTab);
   }, [activeTab]);
 
+  const { t } = useLanguage();
+  const items = menuItems(t)
+
   return (
     <div className="h-screen w-64 flex flex-col justify-between bg-[#F6F6F6] text-[#000000] shadow-lg sticky top-0">
       <div className="sidebar-inner p-3">
@@ -40,10 +44,10 @@ function Sidebar() {
           <img className="h-8" src={LogoDar} alt="dar" />
           <GoSidebarExpand className="text-xl text-[#828FA0]" />
         </div>
-        <div className="relative mb-2 bg-[#EDEDED] flex justify-between items-center px-2 py-1 rounded-lg">
+          <div className="relative mb-2 bg-[#EDEDED] flex justify-between items-center px-2 py-1 rounded-lg">
           <FiSearch className="text-gray-600 text-lg" />
           <input
-            placeholder="Search here..."
+            placeholder={t('search_placeholder') || 'Search here...'}
             className="w-full bg-transparent text-sm px-2 py-2 text-[#242628] font-[400] focus:outline-none"
           />
           <div className="bg-white p-2 rounded-lg">
@@ -51,7 +55,7 @@ function Sidebar() {
           </div>
         </div>
         <nav className="nav flex flex-col space-y-1">
-          {menuItems.map((section, sIndex) => (
+          {items.map((section, sIndex) => (
             <div key={sIndex}>
               {section.items.map((item, iIndex) => (
                 <div key={iIndex} className="mb-2">

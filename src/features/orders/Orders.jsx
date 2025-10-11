@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import Modal from '../../components/common/Modal'
 import Header from '../../layouts/Header'
+import { useLanguage } from '../../i18n/LanguageProvider'
 import pdfIcon from '../../assets/images/pdf.png'
 import {
   FaArrowLeft, Package, PackageCheck, PackageX, PackageOpen,
@@ -28,12 +29,13 @@ function KPI({ icon, title, value, sub }) {
 
 function RowMenu({ onView }) {
   const [open, setOpen] = useState(false)
+  const { t } = useLanguage()
   return (
     <div style={{ position: 'relative' }}>
       <button className="icon-btn" onClick={() => setOpen(v => !v)}>⋯</button>
       {open && (
         <div className="menu" onMouseLeave={() => setOpen(false)}>
-          <button className="menu-item" onClick={() => { onView(); setOpen(false) }}>View Details</button>
+          <button className="menu-item" onClick={() => { onView(); setOpen(false) }}>{t('view_details')}</button>
         </div>
       )}
     </div>
@@ -41,6 +43,7 @@ function RowMenu({ onView }) {
 }
 
 function DetailsSlide({ open, onClose }) {
+  const { t } = useLanguage()
   const [tab, setTab] = useState('Overview')
 
   const [activeTab, setActiveTab] = useState(2)
@@ -67,10 +70,10 @@ function DetailsSlide({ open, onClose }) {
       <div className="slide-over pb-10">
         <div className="slide-head">
           <div className="slide-title">ORD-2025-0921</div>
-          <div className="slide-sub">Below are all the details about this order</div>
+          <div className="slide-sub">{t('order_details_subtitle') || 'Below are all the details about this order'}</div>
           <div className="tabs">
-            {['Overview', 'Files', 'Payment'].map(t => (
-              <button key={t} className={`tab-btn ${tab === t ? 'active' : ''}`} onClick={() => setTab(t)}>{t}</button>
+            {[{key:'Overview',label:t('overview')},{key:'Files',label:t('files')},{key:'Payment',label:t('payments')}].map(tb => (
+              <button key={tb.key} className={`tab-btn ${tab === tb.key ? 'active' : ''}`} onClick={() => setTab(tb.key)}>{tb.label}</button>
             ))}
           </div>
         </div>
@@ -78,22 +81,19 @@ function DetailsSlide({ open, onClose }) {
           {tab === 'Overview' && (
             <div>
               <div className="steps" style={{ gridTemplateColumns: 'repeat(4,1fr)' }}>
-                {['Quotation', 'Design', 'Production', 'Delivery'].map((s, i) => {
+                {[{key:'quotation',icon:'check'},{key:'design',icon:'check'},{key:'production',icon:'package'},{key:'delivery',icon:'truck'}].map((s, i) => {
                   const activeTabs = activeTab == i
-                  const iconText = 'Production' == s
                   return (
-                    <div className={`rounded-md step ${i < 3 ? 'done' : ''}`} key={s} onClick={() => setActiveTab(i)}>
-                      <div className="step-lbl mb-1">{s}</div>
+                    <div className={`rounded-md step ${i < 3 ? 'done' : ''}`} key={s.key} onClick={() => setActiveTab(i)}>
+                      <div className="step-lbl mb-1">{t(`step_${s.key.toLowerCase()}`)}</div>
                       <div className={`rounded-md h-[56px] w-[56px] bg-[#F9FFDE] flex justify-center border-2 items-center ${activeTabs ? 'border-[#064E45]' : 'border-transparent'}`}>
                         <div className="step-ic">
-                          {iconText ? (
+                          {s.icon === 'package' ? (
                             <PackageOpen className='text-[#E0FF63]' />
+                          ) : s.icon === 'truck' ? (
+                            <FaTruck className='text-[#E0FF63]' />
                           ) : (
-                            s === 'Delivery' ? (
-                              <FaTruck className='text-[#E0FF63]' />
-                            ) : (
-                              <LuCheckCheck className='text-[#E0FF63]' />
-                            )
+                            <LuCheckCheck className='text-[#E0FF63]' />
                           )}</div>
                       </div>
                     </div>
@@ -102,21 +102,21 @@ function DetailsSlide({ open, onClose }) {
               </div>
               <div>
                 <div>
-                  <div className="section-title">Customer Information</div>
+                  <div className="section-title">{t('customer_information')}</div>
                   <div className="info-grid">
-                    <div className='flex items-center gap-3'> <LuUserRound className='icon-order' /> Customer Name</div><div>Esra al Khandari</div>
-                    <div className='flex items-center gap-3'> <Phone className='icon-order' /> Customer Number</div><div>+965 97194665</div>
-                    <div className='flex items-center gap-3'> <Mails className='icon-order' /> Email</div><div>MJaffer1@gmail.com</div>
-                    <div className='flex items-center gap-3'> <House className='icon-order' /> Delivery Address</div><div>Park View City, Kuwait</div>
+                        <div className='flex items-center gap-3'> <LuUserRound className='icon-order' /> {t('full_name')}</div><div>Esra al Khandari</div>
+                        <div className='flex items-center gap-3'> <Phone className='icon-order' /> {t('phone')}</div><div>+965 97194665</div>
+                        <div className='flex items-center gap-3'> <Mails className='icon-order' /> {t('email_address')}</div><div>MJaffer1@gmail.com</div>
+                        <div className='flex items-center gap-3'> <House className='icon-order' /> {t('delivery_address')}</div><div>Park View City, Kuwait</div>
                   </div>
                 </div>
                 <div>
-                  <div className="section-title">Order Summary</div>
+                      <div className="section-title">{t('order_summary') || 'Order Summary'}</div>
                   <div className="info-grid">
-                    <div className='flex items-center gap-3'> <Menu className='icon-order' /> Order no.</div><div>ORD-2025-0921</div>
-                    <div className='flex items-center gap-3'> <FaRegFolderOpen className='icon-order' /> Linked Project</div><div>Office Fit-out</div>
-                    <div className='flex items-center gap-3'> <Link className='icon-order' /> Source</div><div>DAR Designer</div>
-                    <div className='flex items-center gap-3'> <FaTruck className='icon-order' /> Est. Delivery</div><div>Oct 20, 2025</div>
+                        <div className='flex items-center gap-3'> <Menu className='icon-order' /> {t('order_no')}</div><div>ORD-2025-0921</div>
+                        <div className='flex items-center gap-3'> <FaRegFolderOpen className='icon-order' /> {t('project')}</div><div>Office Fit-out</div>
+                        <div className='flex items-center gap-3'> <Link className='icon-order' /> {t('source') || 'Source'}</div><div>DAR Designer</div>
+                        <div className='flex items-center gap-3'> <FaTruck className='icon-order' /> {t('est_delivery') || 'Est. Delivery'}</div><div>Oct 20, 2025</div>
                   </div>
                 </div>
               </div>
@@ -141,18 +141,18 @@ function DetailsSlide({ open, onClose }) {
 
           {tab === 'Payment' && (
             <div>
-              <div className="section-title">Payment Details</div>
+              <div className="section-title">{t('payment_details')}</div>
               <div className="info-grid">
-                <div className='flex items-center gap-3'> <Menu className='icon-order' /> Order No</div><div>OR-08765</div>
-                <div className='flex items-center gap-3'> <LuUserRound className='icon-order' /> Customer</div><div>Omer</div>
-                <div className='flex items-center gap-3'> <LuCircleDollarSign className='icon-order' /> Total Amount</div><div>$50,000</div>
-                <div className='flex items-center gap-3'> <FaCheck className='icon-order' /> Paid Amount</div><div>$25,000</div>
-                <div className='flex items-center gap-3'> <LuHourglass className='icon-order' /> Remaining Amount</div><div>$25,000</div>
+                <div className='flex items-center gap-3'> <Menu className='icon-order' /> {t('order_no')}</div><div>OR-08765</div>
+                <div className='flex items-center gap-3'> <LuUserRound className='icon-order' /> {t('customer')}</div><div>Omer</div>
+                <div className='flex items-center gap-3'> <LuCircleDollarSign className='icon-order' /> {t('total_amount')}</div><div>$50,000</div>
+                <div className='flex items-center gap-3'> <FaCheck className='icon-order' /> {t('paid_amount')}</div><div>$25,000</div>
+                <div className='flex items-center gap-3'> <LuHourglass className='icon-order' /> {t('remaining_amount')}</div><div>$25,000</div>
               </div>
               <div className="section-title" style={{ marginTop: 12 }}>Payment History</div>
               <div className="table">
                 <div className="thead" style={{ gridTemplateColumns: '80px 1fr 160px 140px 120px' }}>
-                  <div>No</div><div>Services</div><div>Amount</div><div>Status</div><div>Actions</div>
+                  <div>{t('no')}</div><div>{t('services')}</div><div>{t('amount')}</div><div>{t('status')}</div><div>{t('actions')}</div>
                 </div>
                 {[1, 2, 3, 4].map(i => (
                   <div className="trow" key={i} style={{ gridTemplateColumns: '80px 1fr 160px 140px 120px' }}>
@@ -169,42 +169,43 @@ function DetailsSlide({ open, onClose }) {
 }
 
 function Orders() {
+  const { t } = useLanguage()
   const [open, setOpen] = useState(false)
   return (
     <div className="pages">
-      <Header title="Orders" icon={<FaArrowLeft className='text-[#054E45] text-[15px]' />} showIcon={true} />
+      <Header title="orders" icon={<FaArrowLeft className='text-[#054E45] text-[15px]' />} showIcon={true} />
       <div className="projects-page">
         <div className='flex items-center justify-between mb-6'>
           <div>
-            <h1 className="page-title">Good Morning, Sajibur</h1>
-            <p className="page-sub">Manage all orders, monitor their status, and ensure smooth delivery.</p>
+            <h1 className="page-title">{t('good_morning')}, Sajibur</h1>
+            <p className="page-sub">{t('orders')} - {t('view_details')}</p>
           </div>
           <div className="period-select bg-white px-3 py-2 border-2 border-[#E7E7E7]">This Month ▾</div>
         </div>
         <div className="kpi-grid">
-          <KPI icon={<Package />} sub="Total Orders" value="7" title="Last month" />
-          <KPI icon={<PackageOpen />} sub="Active" value="13" title="Last month" />
-          <KPI icon={<PackageCheck />} sub="Completed" value="13" title="Last month" />
-          <KPI icon={<PackageX />} sub="Cancelled" value="11" title="Last month" />
+          <KPI icon={<Package />} sub={t('total_orders')} value="7" title={t('last_month') || 'Last month'} />
+          <KPI icon={<PackageOpen />} sub={t('active')} value="13" title={t('last_month') || 'Last month'} />
+          <KPI icon={<PackageCheck />} sub={t('completed')} value="13" title={t('last_month') || 'Last month'} />
+          <KPI icon={<PackageX />} sub={t('cancelled')} value="11" title={t('last_month') || 'Last month'} />
         </div>
 
         <section className="card" style={{ marginTop: 12 }}>
           <div className="card-header">
             <div className="card-title">Orders</div>
             <div className="table-actions">
-              <input className="table-search" placeholder="Search here" />
+              <input className="table-search" placeholder={t('search_placeholder')} />
               <button className="btn">Filter ▾</button>
             </div>
           </div>
           <div className="card-body">
             <div className="table">
               <div className="thead" style={{ gridTemplateColumns: '160px 1fr 160px 160px 160px 120px' }}>
-                <div>Order #</div>
-                <div>Project</div>
-                <div>Customer</div>
-                <div>Source</div>
-                <div>Status</div>
-                <div>Actions</div>
+                <div>{t('order_no')}</div>
+                <div>{t('project')}</div>
+                <div>{t('customer')}</div>
+                <div>{t('source')}</div>
+                <div>{t('status')}</div>
+                <div>{t('actions')}</div>
               </div>
               {[1, 2, 3, 4, 5].map((i) => (
                 <div className="trow" key={i} style={{ gridTemplateColumns: '160px 1fr 160px 160px 160px 120px' }}>

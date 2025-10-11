@@ -5,6 +5,7 @@ import {
   LuCheckCheck, FaScroll, LuScrollText, CiFilter, HiOutlineXMark, LuMoveUpRight
 } from '../../assets/icons/icons'
 import Header from '../../layouts/Header'
+import { useLanguage } from '../../i18n/LanguageProvider'
 
 function KPI({ icon, title, value, sub }) {
   return (
@@ -26,14 +27,15 @@ function KPI({ icon, title, value, sub }) {
 
 function RowMenu({ onView, onEdit, onExport }) {
   const [open, setOpen] = useState(false)
+  const { t } = useLanguage()
   return (
     <div style={{ position: 'relative' }}>
       <button className="icon-btn" onClick={() => setOpen(v => !v)}>⋯</button>
       {open && (
         <div className="menu" onMouseLeave={() => setOpen(false)}>
-          <button className="menu-item" onClick={() => { onView(); setOpen(false) }}>View Details</button>
-          <button className="menu-item" onClick={() => { onEdit(); setOpen(false) }}>Edit</button>
-          <button className="menu-item" onClick={() => { onExport(); setOpen(false) }}>Export</button>
+          <button className="menu-item" onClick={() => { onView(); setOpen(false) }}>{t('view_details')}</button>
+          <button className="menu-item" onClick={() => { onEdit(); setOpen(false) }}>{t('edit') || 'Edit'}</button>
+          <button className="menu-item" onClick={() => { onExport(); setOpen(false) }}>{t('export')}</button>
         </div>
       )}
     </div>
@@ -42,6 +44,7 @@ function RowMenu({ onView, onEdit, onExport }) {
 
 function DetailsSlide({ open, onClose }) {
   const [tab, setTab] = useState('Overview')
+  const { t } = useLanguage()
   const items = useMemo(() => [
     { item: 'Shelves', material: 'Plywood', qty: '09', unit: '$120', total: '$12,450' },
     { item: 'Drawers', material: 'Soft MDF', qty: '09', unit: '$120', total: '$12,450' },
@@ -52,38 +55,38 @@ function DetailsSlide({ open, onClose }) {
       <div className="slide-over">
         <div className="slide-head">
           <div className="slide-title">Q-2025-014</div>
-          <div className="slide-sub">Below are all the details about this quotation.</div>
+          <div className="slide-sub">{t('design_details_subtitle') || 'Below are all the details about this quotation.'}</div>
           <div className="tabs">
-            {['Overview', 'Items', 'Files', 'Payments'].map(t => (
-              <button key={t} className={`tab-btn ${tab === t ? 'active' : ''}`} onClick={() => setTab(t)}>{t}</button>
+            {[{key:'Overview',label:t('overview')},{key:'Items',label:t('items')},{key:'Files',label:t('files')},{key:'Payments',label:t('payments')}].map(tb => (
+              <button key={tb.key} className={`tab-btn ${tab === tb.key ? 'active' : ''}`} onClick={() => setTab(tb.key)}>{tb.label}</button>
             ))}
           </div>
         </div>
         <div className="slide-body">
           {tab === 'Overview' && (
             <div>
-              <div className="section-title">Customer Information</div>
+              <div className="section-title">{t('customer_information')}</div>
               <div className="info-grid">
-                <div>Customer Name</div><div>Esra al Khandari</div>
-                <div>Customer Number</div><div>+965 97194665</div>
-                <div>Email</div><div>MJaffer1@gmail.com</div>
-                <div>Delivery Address</div><div>Park View City, Kuwait</div>
+                <div>{t('full_name')}</div><div>Esra al Khandari</div>
+                <div>{t('phone')}</div><div>+965 97194665</div>
+                <div>{t('email_address')}</div><div>MJaffer1@gmail.com</div>
+                <div>{t('delivery_address')}</div><div>Park View City, Kuwait</div>
               </div>
 
-              <div className="section-title" style={{ marginTop: 12 }}>Quotation Summary</div>
+              <div className="section-title" style={{ marginTop: 12 }}>{t('quotation_summary') || 'Quotation Summary'}</div>
               <div className="info-grid">
-                <div>Quotation ID</div><div>Q-2025-014</div>
-                <div>Total Value</div><div>$12,360</div>
-                <div>Payed</div><div>$7,455</div>
-                <div>Date Issued</div><div>Sep 20, 2025</div>
-                <div>Est. Delivery</div><div>Oct 20, 2025</div>
+                <div>{t('quotation_id')}</div><div>Q-2025-014</div>
+                <div>{t('total_value')}</div><div>$12,360</div>
+                <div>{t('paid')}</div><div>$7,455</div>
+                <div>{t('date_issued')}</div><div>Sep 20, 2025</div>
+                <div>{t('est_delivery')}</div><div>Oct 20, 2025</div>
               </div>
 
-              <div className="section-title" style={{ marginTop: 12 }}>Each Unit:</div>
+              <div className="section-title" style={{ marginTop: 12 }}>{t('each_unit') || 'Each Unit:'}</div>
               <div className="info-grid" style={{ gridTemplateColumns: '1fr 1fr' }}>
-                <div>Subtotal:</div><div>$5,500</div>
-                <div>Taxes (10%):</div><div>$360</div>
-                <div>Total Price:</div><div><b>$6,050</b></div>
+                <div>{t('subtotal')}:</div><div>$5,500</div>
+                <div>{t('taxes')}:</div><div>$360</div>
+                <div>{t('total_price')}:</div><div><b>$6,050</b></div>
               </div>
             </div>
           )}
@@ -91,7 +94,7 @@ function DetailsSlide({ open, onClose }) {
           {tab === 'Items' && (
             <div className="table">
               <div className="thead" style={{ gridTemplateColumns: '1fr 1fr 120px 120px 140px' }}>
-                <div>Item</div><div>Material</div><div>Quantity</div><div>Unit Price</div><div>Total Value</div>
+                <div>{t('item') || 'Item'}</div><div>{t('material') || 'Material'}</div><div>{t('quantity') || 'Quantity'}</div><div>{t('unit_price') || 'Unit Price'}</div><div>{t('total_value') || 'Total Value'}</div>
               </div>
               {items.map(row => (
                 <div className="trow" key={row.item} style={{ gridTemplateColumns: '1fr 1fr 120px 120px 140px' }}>
@@ -104,7 +107,7 @@ function DetailsSlide({ open, onClose }) {
           {tab === 'Files' && (
             <div>
               <input id="q-files" type="file" accept="application/pdf" hidden multiple onChange={(e) => { /* no-op for now */ }} />
-              <label htmlFor="q-files" className="btn">Upload PDF</label>
+              <label htmlFor="q-files" className="btn">{t('upload_pdf') || 'Upload PDF'}</label>
               <div className="files-list" style={{ marginTop: 10 }}>
                 {['Design_file.pdf', 'File_info_320.pdf', 'Invoice_final.pdf'].map(n => (
                   <div className="file-row" key={n}>
@@ -119,22 +122,22 @@ function DetailsSlide({ open, onClose }) {
 
           {tab === 'Payments' && (
             <div>
-              <div className="section-title">Payment Details</div>
+              <div className="section-title">{t('payment_details')}</div>
               <div className="info-grid">
-                <div>Order No</div><div>OR-08765</div>
-                <div>Customer</div><div>Omer</div>
-                <div>Total Amount</div><div>$50,000</div>
-                <div>Paid Amount</div><div>$25,000</div>
-                <div>Remaining Amount</div><div>$25,000</div>
+                <div>{t('order_no')}</div><div>OR-08765</div>
+                <div>{t('customer')}</div><div>Omer</div>
+                <div>{t('total_amount')}</div><div>$50,000</div>
+                <div>{t('paid_amount')}</div><div>$25,000</div>
+                <div>{t('remaining_amount')}</div><div>$25,000</div>
               </div>
-              <div className="section-title" style={{ marginTop: 12 }}>Payment History</div>
+              <div className="section-title" style={{ marginTop: 12 }}>{t('payment_history')}</div>
               <div className="table">
                 <div className="thead" style={{ gridTemplateColumns: '80px 1fr 160px 140px 120px' }}>
-                  <div>No</div><div>Services</div><div>Amount</div><div>Status</div><div>Actions</div>
+                  <div>{t('no')}</div><div>{t('services')}</div><div>{t('amount')}</div><div>{t('status')}</div><div>{t('actions')}</div>
                 </div>
                 {[1, 2, 3, 4].map(i => (
                   <div className="trow" key={i} style={{ gridTemplateColumns: '80px 1fr 160px 140px 120px' }}>
-                    <div>0{i}</div><div>Measurement</div><div>$25,000</div><div><span className="status info">Paid</span></div><div>⋯</div>
+                    <div>0{i}</div><div>{t('measurement')}</div><div>$25,000</div><div><span className="status info">{t('paid')}</span></div><div>⋯</div>
                   </div>
                 ))}
               </div>
@@ -254,36 +257,37 @@ function EditQuotation({ open, onClose }) {
 }
 
 function Quotations() {
+  const { t } = useLanguage()
   const [detailOpen, setDetailOpen] = useState(false)
   const [newOpen, setNewOpen] = useState(false)
   const [editOpen, setEditOpen] = useState(false)
   return (
     <div className='pages'>
-      <Header title="Quotations" icon={<FaArrowLeft className='text-[#054E45] text-[15px]' />} showIcon={true} />
+      <Header title="quotations" icon={<FaArrowLeft className='text-[#054E45] text-[15px]' />} showIcon={true} />
       <div className="projects-page">
         <div className='flex items-center justify-between mb-6'>
           <div>
-            <h1 className="page-title">Good Morning, Sajibur</h1>
-            <p className="page-sub">Manage all quotations, convert them to orders, and track order progress.</p>
+            <h1 className="page-title">{t('dashboard')}</h1>
+            <p className="page-sub">{t('search')} {t('quotations')} - {t('customers')}</p>
           </div>
           <div className="header-actions">
             <div className="period-select bg-white px-3 py-2 border-2 border-[#E7E7E7]">This Month ▾</div>
-            <button className="text-[#054E45] bg-white px-3 py-2 border-2 border-[#054E45] flex items-center gap-2" onClick={() => setNewOpen(true)}>New Quotation <MdArrowOutward /></button>
+            <button className="text-[#054E45] bg-white px-3 py-2 border-2 border-[#054E45] flex items-center gap-2" onClick={() => setNewOpen(true)}>{t('quotations')} <MdArrowOutward /></button>
           </div>
         </div>
 
         <div className="kpi-grid">
-          <KPI icon={<LuScrollText />} sub="Total Quotations" value="48" title="Last month" />
-          <KPI icon={<FaScroll />} sub="To Be Generated" value="7" title="Last month" />
-          <KPI icon={<LuCheckCheck />} sub="Approved" value="13" title="Last month" />
-          <KPI icon={<PackageX />} sub="Rejected" value="11" title="Last month" />
+          <KPI icon={<LuScrollText />} sub={t('quotations')} value="48" title="Last month" />
+          <KPI icon={<FaScroll />} sub={t('customers')} value="7" title="Last month" />
+          <KPI icon={<LuCheckCheck />} sub={t('projects')} value="13" title="Last month" />
+          <KPI icon={<PackageX />} sub={t('orders')} value="11" title="Last month" />
         </div>
 
         <section className="card" style={{ marginTop: 12 }}>
           <div className="card-header">
             <div className="card-title">Quotations</div>
             <div className="table-actions">
-              <input className="table-search" placeholder="Search here" />
+              <input className="table-search" placeholder={t('search_placeholder')} />
               <button className="btn flex items-center gap-3">Filter <CiFilter /></button>
             </div>
           </div>
@@ -291,10 +295,10 @@ function Quotations() {
             <div className="table">
               <div className="thead" style={{ gridTemplateColumns: '160px 1fr 200px 160px 160px 120px' }}>
                 <div>ID</div>
-                <div>Project</div>
-                <div>Customer</div>
+                <div>{t('projects')}</div>
+                <div>{t('customers')}</div>
                 <div>Date</div>
-                <div>Total Value</div>
+                <div>{t('orders')}</div>
                 <div>Actions</div>
               </div>
               {[1, 2, 3, 4, 5, 6].map((i) => (
